@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-export default function Header() {
+const Header = () => {
   return (
     <nav>
       <div>
@@ -9,4 +9,6 @@ export default function Header() {
       </div>
     </nav>
   );
-}
+};
+
+export default Header;

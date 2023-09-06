@@ -1,5 +1,8 @@
-import { fetchTrendingMovies } from 'components/API';
 import { useEffect, useState } from 'react';
+import { fetchTrendingMovies } from 'components/API';
+import { TrendingMovies } from 'components/TrendingMovies/TrendingMovies';
+
+//import { Link } from 'react-router-dom';
 
 const HomePage = () => {
   const [trendingMoviesList, setTrendingMoviesList] = useState([]);
@@ -29,26 +32,10 @@ const HomePage = () => {
       {loading ? (
         <div>LOADING...</div>
       ) : (
-        <div>
-          {moviesList && (
-            <ul>
-              {moviesList.map(movie => (
-                <li key={movie.id}>
-                  <>{movie.title}</>
-                </li>
-              ))}
-            </ul>
-          )}
-        </div>
+        <div>{moviesList && <TrendingMovies moviesList={moviesList} />}</div>
       )}
     </div>
   );
 };
 
 export default HomePage;
-
-//{
-//  books && (
-
-//  );
-//}

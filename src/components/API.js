@@ -11,8 +11,13 @@ export const fetchTrendingMovies = async () => {
 };
 
 export const fetchMovieById = async movieId => {
-  const response = await axios.get(
-    `/movie/${movieId}?language=en-US&api_key=${API_KEY}`
-  );
+  const response = await axios.get(`/movie/${movieId}?api_key=${API_KEY}`);
   return response.data;
 };
+
+//export const fetchMovieDetails = async movieId => {
+//  const response = await axios.get(
+//    `/movie/${movieId}?language=en-US&api_key=${API_KEY}`
+//  );
+//  return response.data;
+//};
