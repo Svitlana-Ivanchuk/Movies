@@ -1,5 +1,5 @@
 const MoviesPage = () => {
-  return <div>Movies</div>;
+  return <div>movies</div>;
 };
 
 export default MoviesPage;

@@ -2,8 +2,6 @@ import { useEffect, useState } from 'react';
 import { fetchTrendingMovies } from 'components/API';
 import { TrendingMovies } from 'components/TrendingMovies/TrendingMovies';
 
-//import { Link } from 'react-router-dom';
-
 const HomePage = () => {
   const [trendingMoviesList, setTrendingMoviesList] = useState([]);
   const [loading, setLoading] = useState(false);

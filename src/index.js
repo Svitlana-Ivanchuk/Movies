@@ -13,4 +13,4 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   </React.StrictMode>
 );
 
-//basename = '/Svitlana-Ivanchuk/goit-react-hw-05-movies';
+//basename="/goit-react-hw-05-movies"
