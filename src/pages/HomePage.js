@@ -22,7 +22,7 @@ const HomePage = () => {
     getTrendingMovies();
   }, []);
 
-  const moviesList = trendingMoviesList.results;
+  //const moviesList = trendingMoviesList.results;
 
   return (
     <div>
@@ -30,7 +30,11 @@ const HomePage = () => {
       {loading ? (
         <div>LOADING...</div>
       ) : (
-        <div>{moviesList && <TrendingMovies moviesList={moviesList} />}</div>
+        <div>
+          {trendingMoviesList && (
+            <TrendingMovies moviesList={trendingMoviesList} />
+          )}
+        </div>
       )}
     </div>
   );

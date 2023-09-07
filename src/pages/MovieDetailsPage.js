@@ -1,23 +1,22 @@
 import { useEffect, useState } from 'react';
 import { Link, useParams, Outlet } from 'react-router-dom';
 import toast from 'react-hot-toast';
-import { MovieDetails } from 'components/MovieDetails/MovieDetails';
 import { fetchMovieById } from 'components/API';
+import { MovieDetails } from 'components/MovieDetails/MovieDetails';
 import { Cast } from 'components/Cast/Cast';
+import { Reviews } from 'components/Reviews/Reviews';
 
 const MovieDetailsPage = () => {
   const [loading, setLoading] = useState(false);
 
   const { movieId } = useParams();
-  const [movieDetails, setMovieDetails] = useState(null);
+  const [movieDetails, setMovieDetails] = useState({});
 
   useEffect(() => {
+    setLoading(true);
     async function getMovieDetails() {
       try {
-        setLoading(true);
-
         const moviesItem = await fetchMovieById(movieId);
-        console.log(moviesItem);
         setMovieDetails(moviesItem);
         toast.success('Successfully created!');
       } catch (error) {
@@ -26,10 +25,11 @@ const MovieDetailsPage = () => {
         setLoading(false);
       }
     }
+
     getMovieDetails();
   }, [movieId]);
 
-  //if (!movie) {
+  //if (!movieDetails) {
   //  return setLoading(true);
   //}
 
@@ -38,13 +38,9 @@ const MovieDetailsPage = () => {
   return (
     <div>
       <Link to="/">Go Back</Link>
-      {loading ? (
-        <div>LOADING...</div>
-      ) : (
-        <div>
-          <MovieDetails movie={movieDetails} />
-        </div>
-      )}
+
+      {loading ? <div>LOADING...</div> : <MovieDetails movie={movieDetails} />}
+
       <ul>
         <li>
           <Link to="cast">
@@ -52,9 +48,12 @@ const MovieDetailsPage = () => {
           </Link>
         </li>
         <li>
-          <Link to="reviews">Reviews</Link>
+          <Link to="reviews">
+            <Reviews />
+          </Link>
         </li>
       </ul>
+
       <Outlet />
     </div>
   );
