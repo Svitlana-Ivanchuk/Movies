@@ -3,13 +3,14 @@ import { fetchMovieById } from 'components/API';
 import { Link, useParams, Outlet } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { MovieDetails } from 'components/MovieDetails/MovieDetails';
-import { Cast } from 'components/Cast/Cast';
+//import { Cast } from 'components/Cast/Cast';
 import { Reviews } from 'components/Reviews/Reviews';
 
 const MovieDetailsPage = () => {
   const { movieId } = useParams();
 
   const [loading, setLoading] = useState(false);
+  const [movieDetails, setMovieDetails] = useState(null);
 
   useEffect(() => {
     async function getMovieDetails() {
@@ -30,7 +31,9 @@ const MovieDetailsPage = () => {
     getMovieDetails();
   }, [movieId]);
 
-  const [movieDetails, setMovieDetails] = useState(null);
+  if (!movieDetails) {
+    return;
+  }
 
   return (
     <div>
@@ -46,14 +49,10 @@ const MovieDetailsPage = () => {
 
       <ul>
         <li>
-          <Link to="cast">
-            <Cast />
-          </Link>
+          <Link to="cast">Cast</Link>
         </li>
         <li>
-          <Link to="reviews">
-            <Reviews />
-          </Link>
+          <Link to="reviews">Reviews</Link>
         </li>
       </ul>
 

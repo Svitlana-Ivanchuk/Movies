@@ -21,14 +21,14 @@ export const fetchCast = async movieId => {
   const response = await axios.get(
     `/movie/${movieId}/credits?language=en-US&api_key=${API_KEY}`
   );
-  return response.data;
+  return response.data.cast;
 };
 
 export const fetchReviews = async movieId => {
   const response = await axios.get(
     `/movie/${movieId}/reviews?language=en-US&api_key=${API_KEY}`
   );
-  return response.data;
+  return response.data.results;
 };
 
 export const fetchSearchMovie = async newMovie => {
