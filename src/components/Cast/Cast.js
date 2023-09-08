@@ -1,7 +1,7 @@
-import { fetchCast } from 'components/API';
-import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import toast from 'react-hot-toast';
+//import { fetchCast } from 'components/API';
+//import { useEffect, useState } from 'react';
+//import { useParams } from 'react-router-dom';
+//import toast from 'react-hot-toast';
 
 export const Cast = () => {
   //const { movieId } = useParams;

@@ -10,7 +10,6 @@ const MovieDetailsPage = () => {
   const { movieId } = useParams();
 
   const [loading, setLoading] = useState(false);
-  const [movieDetails, setMovieDetails] = useState(null);
 
   useEffect(() => {
     async function getMovieDetails() {
@@ -30,6 +29,8 @@ const MovieDetailsPage = () => {
 
     getMovieDetails();
   }, [movieId]);
+
+  const [movieDetails, setMovieDetails] = useState(null);
 
   return (
     <div>
