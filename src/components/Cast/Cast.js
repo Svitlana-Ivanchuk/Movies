@@ -24,5 +24,4 @@ export const Cast = () => {
   console.log(cast);
 
   return console.log(cast);
-  console.log(movieId);
 };

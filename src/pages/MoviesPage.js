@@ -7,6 +7,7 @@ const MoviesPage = () => {
   const [query, setQuery] = useState('');
   const { newMovie } = useParams();
   console.log(newMovie);
+
   useEffect(() => {
     async function getMovieQuery() {
       try {
@@ -30,7 +31,7 @@ const MoviesPage = () => {
       <input
         type="text"
         name="query"
-        value={query.title}
+        value={query}
         placeholder="Input name movie"
         onChange={handleQueryChange}
       />

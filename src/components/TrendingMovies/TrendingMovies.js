@@ -1,13 +1,14 @@
 import { Link } from 'react-router-dom';
 
 export const TrendingMovies = ({ moviesList }) => {
+  console.log(moviesList);
   return (
     <>
       <ul>
         {moviesList.map(movie => (
-          <Link key={movie.id} to={`movies/${movie.id}`}>
-            <li>{movie.title}</li>
-          </Link>
+          <li key={movie.id}>
+            <Link to={`movies/${movie.id}`}>{movie.title}</Link>
+          </li>
         ))}
       </ul>
     </>
