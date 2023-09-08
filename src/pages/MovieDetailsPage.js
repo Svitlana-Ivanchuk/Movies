@@ -1,32 +1,32 @@
 import { useEffect, useState } from 'react';
-import { Link, useParams, Outlet } from 'react-router-dom';
-//import toast from 'react-hot-toast';
 import { fetchMovieById } from 'components/API';
+import { Link, useParams, Outlet } from 'react-router-dom';
+import toast from 'react-hot-toast';
 import { MovieDetails } from 'components/MovieDetails/MovieDetails';
 import { Cast } from 'components/Cast/Cast';
 import { Reviews } from 'components/Reviews/Reviews';
 
 const MovieDetailsPage = () => {
+  const { movieId } = useParams();
+
   const [loading, setLoading] = useState(false);
   const [movieDetails, setMovieDetails] = useState(null);
 
-  const { movieId } = useParams();
-
   useEffect(() => {
-    const getMovieDetails = async () => {
-      setLoading(true);
+    async function getMovieDetails() {
       try {
+        setLoading(true);
         const movieQuery = await fetchMovieById(movieId);
         console.log(movieQuery);
         setMovieDetails(movieQuery);
-        //toast.success('Successfully created!');
+        toast.success('Successfully created!');
       } catch (error) {
         console.log('error');
-        //toast.error('This is an error!');
+        toast.error('This is an error!');
       } finally {
         setLoading(false);
       }
-    };
+    }
 
     getMovieDetails();
   }, [movieId]);

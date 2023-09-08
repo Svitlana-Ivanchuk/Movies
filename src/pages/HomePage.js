@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { fetchTrendingMovies } from 'components/API';
+
 import { TrendingMovies } from 'components/TrendingMovies/TrendingMovies';
 
 const HomePage = () => {
@@ -21,8 +22,6 @@ const HomePage = () => {
     }
     getTrendingMovies();
   }, []);
-
-  //const moviesList = trendingMoviesList.results;
 
   return (
     <div>
