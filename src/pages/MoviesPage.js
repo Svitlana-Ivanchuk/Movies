@@ -3,6 +3,7 @@ import toast from 'react-hot-toast';
 import { Link, useSearchParams, useLocation } from 'react-router-dom';
 import { fetchSearchMovie } from 'components/API';
 import { SearchForm } from 'components/SearchForm/SearchForm';
+import { Loader } from 'components/Loader/Loader';
 
 const MoviesPage = () => {
   const [loading, setLoading] = useState(false);
@@ -36,7 +37,7 @@ const MoviesPage = () => {
     <>
       <SearchForm></SearchForm>
       {loading ? (
-        <div>LOADING...</div>
+        <Loader />
       ) : (
         <div>
           {queryMovie && (

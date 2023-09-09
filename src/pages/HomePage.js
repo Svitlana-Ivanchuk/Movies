@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { fetchTrendingMovies } from 'components/API';
 
 import { TrendingMovies } from 'components/TrendingMovies/TrendingMovies';
+import { Loader } from 'components/Loader/Loader';
 
 const HomePage = () => {
   const [trendingMoviesList, setTrendingMoviesList] = useState([]);
@@ -27,7 +28,7 @@ const HomePage = () => {
     <div>
       <h1>Trending Today</h1>
       {loading ? (
-        <div>LOADING...</div>
+        <Loader />
       ) : (
         <div>
           {trendingMoviesList && (

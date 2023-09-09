@@ -32,9 +32,38 @@ li {
   list-style: none;
 }
 
+a {
+  text-decoration: none;
+}
 img {
   display: block;
   max-width: 100%;
   height: auto;
 }
+h1 { 
+   display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 1.36;
+  padding: 24px;
+  color: #404bbf;
+  }
+
+h2 {  
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 1.36;
+  padding: 24px;
+  color: #404bbf;
+  }
+container {
+  padding: 15px;
+  width: 900px;
+}
+
 `;

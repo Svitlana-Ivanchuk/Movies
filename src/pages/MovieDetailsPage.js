@@ -3,6 +3,7 @@ import { Link, useParams, Outlet, useLocation } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { MovieDetails } from 'components/MovieDetails/MovieDetails';
 import { fetchMovieById } from 'components/API';
+import { Loader } from 'components/Loader/Loader';
 
 const MovieDetailsPage = () => {
   const { movieId } = useParams();
@@ -39,7 +40,7 @@ const MovieDetailsPage = () => {
       <Link to={backLinkLocationRef.current}>Go Back</Link>
 
       {loading ? (
-        <div>LOADING...</div>
+        <Loader />
       ) : (
         <div>
           <MovieDetails movie={movieDetails} />
