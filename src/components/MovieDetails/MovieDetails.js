@@ -1,20 +1,18 @@
-export const MovieDetails = ({ movie }) => {
-  console.log(movie);
+export const MovieDetails = ({
+  movie: { title, poster_path, overview, genres },
+}) => {
   return (
     <div>
-      <h1>{movie.title}</h1>
-      <img
-        src={`http://image.tmdb.org/t/p/w300${movie.poster_path}`}
-        alt={movie.title}
-      />
+      <h1>{title}</h1>
+      <img src={`http://image.tmdb.org/t/p/w300${poster_path}`} alt={title} />
       <div>
         <h2>Overview</h2>
-        <p>{movie.overview}</p>
+        <p>{overview}</p>
       </div>
       <div>
         <h2>Genres</h2>
         <ul>
-          {movie.genres.map(elem => (
+          {genres.map(elem => (
             <li key={elem.id}>{elem.name} </li>
           ))}
         </ul>

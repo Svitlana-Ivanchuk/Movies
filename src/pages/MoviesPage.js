@@ -1,41 +1,57 @@
-import { fetchSearchMovie } from 'components/API';
 import { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
-import { useParams } from 'react-router-dom';
+import { Link, useSearchParams, useLocation } from 'react-router-dom';
+import { fetchSearchMovie } from 'components/API';
+import { SearchForm } from 'components/SearchForm/SearchForm';
 
 const MoviesPage = () => {
-  const [query, setQuery] = useState('');
-  const { newMovie } = useParams();
-  console.log(newMovie);
+  const [loading, setLoading] = useState(false);
+  const [queryMovie, setQueryMovie] = useState(null);
+  const [searchParams] = useSearchParams();
+  const query = searchParams.get('query') ?? '';
+
+  const location = useLocation();
 
   useEffect(() => {
-    async function getMovieQuery() {
+    if (query === '') {
+      return;
+    }
+
+    async function getQueryMovie() {
       try {
-        const movieQuery = await fetchSearchMovie(newMovie);
-        console.log(movieQuery);
+        setLoading(true);
+        const newQuery = await fetchSearchMovie(query);
+        setQueryMovie(newQuery);
       } catch (error) {
         toast.error('This is an error!');
+      } finally {
+        setLoading(false);
       }
     }
 
-    getMovieQuery();
-  }, [newMovie]);
-
-  const handleQueryChange = evt => {
-    console.log(evt.currentTarget.value);
-    setQuery(evt.currentTarget.value.toLowerCase());
-  };
+    getQueryMovie();
+  }, [query]);
 
   return (
     <>
-      <input
-        type="text"
-        name="query"
-        value={query}
-        placeholder="Input name movie"
-        onChange={handleQueryChange}
-      />
-      <button type="submit">Search</button>
+      <SearchForm></SearchForm>
+      {loading ? (
+        <div>LOADING...</div>
+      ) : (
+        <div>
+          {queryMovie && (
+            <ul>
+              {queryMovie.map(movie => (
+                <li key={movie.id}>
+                  <Link to={`${movie.id}`} state={{ from: location }}>
+                    {movie.title}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+      )}
     </>
   );
 };

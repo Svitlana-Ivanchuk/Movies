@@ -1,13 +1,14 @@
-import { useEffect, useState } from 'react';
-import { fetchMovieById } from 'components/API';
-import { Link, useParams, Outlet } from 'react-router-dom';
+import { useEffect, useRef, useState } from 'react';
+import { Link, useParams, Outlet, useLocation } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { MovieDetails } from 'components/MovieDetails/MovieDetails';
-//import { Cast } from 'components/Cast/Cast';
-import { Reviews } from 'components/Reviews/Reviews';
+import { fetchMovieById } from 'components/API';
 
 const MovieDetailsPage = () => {
   const { movieId } = useParams();
+  const location = useLocation();
+  //делаем реф для возврата на предыдущую страницу для вложеных компонентов
+  const backLinkLocationRef = useRef(location.state?.from ?? '/movies');
 
   const [loading, setLoading] = useState(false);
   const [movieDetails, setMovieDetails] = useState(null);
@@ -17,11 +18,9 @@ const MovieDetailsPage = () => {
       try {
         setLoading(true);
         const movieQuery = await fetchMovieById(movieId);
-        console.log(movieQuery);
         setMovieDetails(movieQuery);
         toast.success('Successfully created!');
       } catch (error) {
-        console.log('error');
         toast.error('This is an error!');
       } finally {
         setLoading(false);
@@ -37,7 +36,7 @@ const MovieDetailsPage = () => {
 
   return (
     <div>
-      <Link to="/">Go Back</Link>
+      <Link to={backLinkLocationRef.current}>Go Back</Link>
 
       {loading ? (
         <div>LOADING...</div>

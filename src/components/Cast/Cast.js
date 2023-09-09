@@ -26,8 +26,6 @@ export const Cast = () => {
     return;
   }
 
-  console.log(cast);
-
   return (
     <div>
       <ul>
