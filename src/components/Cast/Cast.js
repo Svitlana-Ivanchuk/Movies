@@ -3,12 +3,7 @@ import { useParams } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { fetchCast } from 'components/API';
 import noimage from '../Images/noimage.png';
-import {
-  CastCardStyle,
-  CastStyle,
-  CastCardInfoStyle,
-  CastListStyle,
-} from './Cast.styled';
+import { CastCardStyle, CastCardInfoStyle, CastListStyle } from './Cast.styled';
 
 const Cast = () => {
   const { movieId } = useParams();
