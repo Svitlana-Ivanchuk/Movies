@@ -47,23 +47,30 @@ h1 {
   font-weight: 700;
   font-size: 28px;
   line-height: 1.36;
-  padding: 24px;
+  padding: 16px;
   color: #404bbf;
   }
 
 h2 {  
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  font-weight: 400;
+    font-weight: 400;
   font-size: 24px;
   line-height: 1.36;
-  padding: 24px;
+  padding: 12px;
   color: #404bbf;
   }
-container {
-  padding: 15px;
-  width: 900px;
-}
 
+  h3 {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.36;
+  padding: 4px;
+  }
+
+section {
+  margin: 8px 0 20px 0;
+  padding: 16px;
+  width: 100%;
+  border-bottom: 1px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+  }
 `;

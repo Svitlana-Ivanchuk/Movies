@@ -1,15 +1,21 @@
 import { useEffect, useRef, useState } from 'react';
-import { Link, useParams, Outlet, useLocation } from 'react-router-dom';
+import { useParams, Outlet, useLocation } from 'react-router-dom';
 import toast from 'react-hot-toast';
+import { Suspense } from 'react';
 import { MovieDetails } from 'components/MovieDetails/MovieDetails';
 import { fetchMovieById } from 'components/API';
 import { Loader } from 'components/Loader/Loader';
+import {
+  InformListStyle,
+  StyledLink,
+  MoviedetailStyle,
+} from './MovieDetailsPage.styled';
 
 const MovieDetailsPage = () => {
   const { movieId } = useParams();
   const location = useLocation();
   //делаем реф для возврата на предыдущую страницу для вложеных компонентов
-  const backLinkLocationRef = useRef(location.state?.from ?? '/movies');
+  const backLinkLocationRef = useRef(location.state?.from ?? '/');
 
   const [loading, setLoading] = useState(false);
   const [movieDetails, setMovieDetails] = useState(null);
@@ -31,33 +37,33 @@ const MovieDetailsPage = () => {
     getMovieDetails();
   }, [movieId]);
 
+  //щоб не було помилки з null
   if (!movieDetails) {
     return;
   }
 
   return (
-    <div>
-      <Link to={backLinkLocationRef.current}>Go Back</Link>
+    <section>
+      <StyledLink to={backLinkLocationRef.current}>Go Back</StyledLink>
 
       {loading ? (
         <Loader />
       ) : (
-        <div>
+        <MoviedetailStyle>
           <MovieDetails movie={movieDetails} />
-        </div>
+        </MoviedetailStyle>
       )}
 
-      <ul>
-        <li>
-          <Link to="cast">Cast</Link>
-        </li>
-        <li>
-          <Link to="reviews">Reviews</Link>
-        </li>
-      </ul>
+      <h2>Additional information</h2>
+      <InformListStyle>
+        <StyledLink to="cast">Cast</StyledLink>
+        <StyledLink to="reviews">Reviews</StyledLink>
+      </InformListStyle>
 
-      <Outlet />
-    </div>
+      <Suspense fallback={<Loader />}>
+        <Outlet />
+      </Suspense>
+    </section>
   );
 };
 

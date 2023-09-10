@@ -1,10 +1,19 @@
 import { Routes, Route } from 'react-router-dom';
-import HomePage from 'pages/HomePage';
-import MoviesPage from 'pages/MoviesPage';
-import MovieDetailsPage from 'pages/MovieDetailsPage';
+import { lazy } from 'react';
 import { SharedLayout } from './SharedLayout/SharedLayout';
-import { Cast } from './Cast/Cast';
-import { Reviews } from './Reviews/Reviews';
+
+const HomePage = lazy(() => import('../pages/HomePage'));
+const MoviesPage = lazy(() => import('../pages/MoviesPage'));
+const MovieDetailsPage = lazy(() => import('../pages/MovieDetailsPage'));
+const Cast = lazy(() => import('./Cast/Cast'));
+
+//асинхронне завантаження JS-коду для недефолтного імпорту
+const Reviews = lazy(() =>
+  import('./Reviews/Reviews').then(module => ({
+    ...module,
+    default: module.Reviews,
+  }))
+);
 
 export const App = () => {
   return (

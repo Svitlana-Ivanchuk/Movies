@@ -4,6 +4,12 @@ import { Link, useSearchParams, useLocation } from 'react-router-dom';
 import { fetchSearchMovie } from 'components/API';
 import { SearchForm } from 'components/SearchForm/SearchForm';
 import { Loader } from 'components/Loader/Loader';
+import {
+  ListStyle,
+  ItemStyle,
+  TitleStyle,
+} from '../components/TrendingMovies/TrendingMovies.styled';
+import noimage from '../components/Images/noimage.png';
 
 const MoviesPage = () => {
   const [loading, setLoading] = useState(false);
@@ -39,19 +45,27 @@ const MoviesPage = () => {
       {loading ? (
         <Loader />
       ) : (
-        <div>
+        <section>
           {queryMovie && (
-            <ul>
+            <ListStyle>
               {queryMovie.map(movie => (
-                <li key={movie.id}>
+                <ItemStyle key={movie.id}>
                   <Link to={`${movie.id}`} state={{ from: location }}>
-                    {movie.title}
+                    <TitleStyle>{movie.title}</TitleStyle>
+                    <img
+                      src={
+                        movie.poster_path
+                          ? `http://image.tmdb.org/t/p/w300${movie.poster_path}`
+                          : `${noimage}`
+                      }
+                      alt={movie.title}
+                    />
                   </Link>
-                </li>
+                </ItemStyle>
               ))}
-            </ul>
+            </ListStyle>
           )}
-        </div>
+        </section>
       )}
     </>
   );

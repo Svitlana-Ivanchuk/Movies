@@ -3,8 +3,14 @@ import { useParams } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { fetchCast } from 'components/API';
 import noimage from '../Images/noimage.png';
+import {
+  CastCardStyle,
+  CastStyle,
+  CastCardInfoStyle,
+  CastListStyle,
+} from './Cast.styled';
 
-export const Cast = () => {
+const Cast = () => {
   const { movieId } = useParams();
   const [cast, setCast] = useState(null);
 
@@ -27,10 +33,10 @@ export const Cast = () => {
   }
 
   return (
-    <div>
-      <ul>
+    <section>
+      <CastListStyle>
         {cast.map(elem => (
-          <li key={elem.id}>
+          <CastCardStyle key={elem.id}>
             <img
               src={
                 elem.profile_path
@@ -39,11 +45,15 @@ export const Cast = () => {
               }
               alt={elem.name}
             />
-            <h2>{elem.name}</h2>
-            <h3>{elem.character}</h3>
-          </li>
+            <CastCardInfoStyle>
+              <h2>{elem.name}</h2>
+              <h3>{elem.character}</h3>
+            </CastCardInfoStyle>
+          </CastCardStyle>
         ))}
-      </ul>
-    </div>
+      </CastListStyle>
+    </section>
   );
 };
+
+export default Cast;

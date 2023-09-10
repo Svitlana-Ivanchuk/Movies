@@ -27,12 +27,17 @@ export const Reviews = () => {
   return (
     <div>
       <ul>
-        {review.map(elem => (
-          <li key={elem.id}>
-            <h2>{elem.author}</h2>
-            <p>{elem.content}</p>
-          </li>
-        ))}
+        {review &&
+          (review.length === 0 ? (
+            <h2>Sorry, we don't have any reviews for this movie.</h2>
+          ) : (
+            review.map(elem => (
+              <li key={elem.id}>
+                <h2>{elem.author}</h2>
+                <p>{elem.content}</p>
+              </li>
+            ))
+          ))}
       </ul>
     </div>
   );
