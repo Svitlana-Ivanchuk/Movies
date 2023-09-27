@@ -22,3 +22,8 @@ export const TitleStyle = styled.h2`
   text-align: center;
   height: 80px;
 `;
+
+export const ThumbStyle = styled.div`
+  width: 100%;
+  height: 100%;
+`;
